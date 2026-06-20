@@ -46,11 +46,15 @@ h3{
     background: linear-gradient(90deg, rgba(2, 0, 36, 1) 0%, rgba(9, 9, 121, 1) 60%, rgba(39, 118, 245, 1) 100%);
 
 }
-.option-login button{
+.option-login a{
     width : 90%;
     font-size: 1.3em;
     border-radius: 15px;
     border : 1px solid rgb(144, 141, 145);
+    text-align : center;
+    line-height : 55px;
+    text-decoration : none;
+    color : black;
     
 }
 
@@ -71,5 +75,6 @@ h3{
     background: #020024;
     background: linear-gradient(270deg, rgba(2, 0, 36, 1) 0%, rgba(32, 32, 171, 1) 100%, rgba(0, 212, 255, 1) 100%);
     color : white;
+    cursor : pointer;
     
 }
