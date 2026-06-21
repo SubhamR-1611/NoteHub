@@ -1,0 +1,94 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body{
+    background-color: #eef1f7;
+    min-height: 100vh;
+}
+
+.container{
+    width: 90%;
+    margin: 30px auto;
+}
+
+/* NAVBAR */
+
+.navbar{
+    background: white;
+    border-radius: 50px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 20px 30px;
+}
+
+/* LEFT SIDE */
+
+.nav-left{
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+.nav-left button{
+    border: none;
+    background: transparent;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+.active-btn{
+    background: #1d7df7 !important;
+    color: white;
+    padding: 12px 25px;
+    border-radius: 30px;
+}
+
+/* RIGHT SIDE */
+
+.nav-right{
+    display: flex;
+    align-items: center;
+    gap: 25px;
+}
+
+.add-btn{
+    width: 60px;
+    height: 60px;
+
+    border: none;
+    border-radius: 50%;
+
+    background: #1d7df7;
+    color: white;
+
+    font-size: 30px;
+    cursor: pointer;
+}
+
+.logout-btn{
+    border: none;
+    background: transparent;
+
+    color: red;
+    font-size: 20px;
+
+    cursor: pointer;
+}
+
+/* NOTES AREA */
+
+.notes-container{
+    margin-top: 30px;
+
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+
+    gap: 25px;
+}
