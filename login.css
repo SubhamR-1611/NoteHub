@@ -1,0 +1,63 @@
+
+body{
+    display:flex;
+    height:100vh;
+    margin:0;
+    background: linear-gradient(
+        to bottom,
+        black 50%,
+        rgb(135, 64, 249) 50%
+    );
+}
+.login-form{
+    background-color: rgb(255, 255, 255);
+    align-items: center;
+    margin: 100px auto;
+    height: 400px;
+    width: 300px;
+    border-radius: 10px;
+    padding: 20px;
+}
+h1{
+    text-align: center;
+    padding-top: 20px;
+}
+button{
+    background-color: rgb(30, 0, 166);
+   padding:10px;
+   cursor:pointer;
+   height: 50px;
+    width: 270px;
+    margin-top: 20px;
+    font-size: 20px;
+    color: white;
+}
+input{
+    padding: 10px;
+    height: 30px;
+    width: 250px;
+}
+.email{
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+.first{
+    flex-direction: row;
+    display: flex;
+}
+.signin{
+    width: 100px;
+    background-color: rgb(255,255,255);
+    color: black;
+    margin-left: 10px;
+}
+.login{
+    width: 100px;
+    padding-right: 50px;
+    margin-right: 20px;
+    align-items: center;
+    margin-left: 20px;
+}
+.first{
+    align-items: center;
+}
