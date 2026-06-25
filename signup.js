@@ -1,9 +1,9 @@
 document.addEventListener("DOMContentLoaded", () => {
     
     const signupForm = document.querySelector("form");
-    const emailInput = document.getElementById("signup-email");
-    const passwordInput = document.getElementById("Password");
-    const confirmPasswordInput = document.getElementById("Confirm-password");
+    const emailInput = document.querySelector("#signup-email");
+    const passwordInput = document.querySelector("#Password");
+    const confirmPasswordInput = document.querySelector("#Confirm-password");
 
     
     signupForm.addEventListener("submit", (event) => {
