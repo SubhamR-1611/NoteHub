@@ -1,4 +1,6 @@
-
+*{
+    font-family: "Google Sans" ;
+}
 body{
     height:100vh;
     margin:0;
