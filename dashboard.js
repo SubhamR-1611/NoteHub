@@ -4,7 +4,17 @@ const notesContainer = document.querySelector(".notes-container");
 const allBtn = document.querySelector(".nav-left button:first-child");
 const importantBtn = document.querySelector(".nav-left button:last-child");
 const searchInput = document.getElementById("searchInput");
-let notes = JSON.parse(localStorage.getItem("notes")) || [];
+const currentUser = localStorage.getItem("loggedInUser");
+
+// If no user is logged in, go back to login page
+if (!currentUser) {
+    window.location.href = "login.html";
+}
+
+// Each user gets their own notes
+let notes = JSON.parse(
+    localStorage.getItem("notes_" + currentUser)
+) || [];
 
 let showImportant = false;
 
@@ -212,7 +222,25 @@ function deleteNote(event, index) {
 function saveData() {
 
     localStorage.setItem(
-        "notes",
+        "notes_" + currentUser,
         JSON.stringify(notes)
     );
+
 }
+/* ==========================
+   LOGOUT
+========================== */
+
+const logoutBtn = document.getElementById("logoutBtn");
+
+logoutBtn.addEventListener("click", () => {
+
+    const confirmLogout = confirm("Are you sure you want to logout?");
+
+    if (!confirmLogout) return;
+
+    localStorage.removeItem("loggedInUser");
+
+    window.location.href = "login.html";
+
+});

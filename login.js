@@ -16,9 +16,25 @@ form.addEventListener("submit", function(event) {
         alert("Password must be at least 6 characters long.");
     }
     else {
-        alert("Login Successful!");
-        form.reset();
-         window.location.href = "dashboard.html";
+        const storedPassword = localStorage.getItem(email.value.trim());
+
+if (storedPassword === null) {
+    alert("Account not found. Please Sign Up.");
+}
+else if (storedPassword !== password.value) {
+    alert("Incorrect Password.");
+}
+else {
+
+    // Save logged in user
+    localStorage.setItem("loggedInUser", email.value.trim());
+
+    alert("Login Successful!");
+
+    form.reset();
+
+    window.location.href = "dashboard.html";
+}
     }
 
 });
