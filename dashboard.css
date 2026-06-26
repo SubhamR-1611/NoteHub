@@ -281,3 +281,28 @@ textarea::placeholder {
     box-shadow:
         0 10px 25px rgba(0, 0, 0, 0.15);
 }
+/* ==========================
+   SEARCH BAR
+========================== */
+
+#searchInput{
+
+    width:220px;
+
+    padding:12px 18px;
+
+    border:none;
+
+    border-radius:25px;
+
+    outline:none;
+
+    font-size:16px;
+
+    box-shadow:0 2px 8px rgba(0,0,0,0.08);
+}
+
+#searchInput:focus{
+
+    border:2px solid #1d7df7;
+}

@@ -3,7 +3,7 @@ const notesContainer = document.querySelector(".notes-container");
 
 const allBtn = document.querySelector(".nav-left button:first-child");
 const importantBtn = document.querySelector(".nav-left button:last-child");
-
+const searchInput = document.getElementById("searchInput");
 let notes = JSON.parse(localStorage.getItem("notes")) || [];
 
 let showImportant = false;
@@ -25,6 +25,7 @@ addBtn.addEventListener("click", () => {
             description: "",
             important: false
         });
+        
 
         saveData();
         displayNotes();
@@ -54,6 +55,11 @@ importantBtn.addEventListener("click", () => {
 
     displayNotes();
 });
+searchInput.addEventListener("input", () => {
+
+    displayNotes();
+
+});
 
 /* ==========================
    DISPLAY NOTES
@@ -63,9 +69,19 @@ function displayNotes() {
 
     notesContainer.innerHTML = "";
 
-    let filteredNotes = showImportant
-        ? notes.filter(note => note.important)
-        : notes;
+let filteredNotes = showImportant
+    ? notes.filter(note => note.important)
+    : notes;
+
+const searchText = searchInput.value.toLowerCase();
+
+filteredNotes = filteredNotes.filter(note =>
+
+    note.title.toLowerCase().includes(searchText) ||
+
+    note.description.toLowerCase().includes(searchText)
+
+);
 
     if (filteredNotes.length === 0) {
 
