@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NotesHub Dashboard</title>
+    <link rel="stylesheet" href="dashboard.css">
+</head>
+<body>
+
+    <div class="container">
+
+        <!-- Navbar -->
+        <div class="navbar">
+
+            <div class="nav-left">
+                <button class="active-btn">All Notes</button>
+                <button>Important</button>
+            </div>
+
+<div class="nav-right">
+
+    <input
+        type="text"
+        id="searchInput"
+        placeholder="Search Notes..."
+    >
+
+    <button class="add-btn">+</button>
+
+    <button class="logout-btn" id="logoutBtn">
+        Sign Out
+    </button>
+
+</div>
+        </div>
+
+        <!-- Notes will be generated here through JavaScript -->
+        <div class="notes-container">
+
+        </div>
+
+    </div>
+<script src="dashboard.js"></script>
+</body>
+</html>

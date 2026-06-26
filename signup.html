@@ -10,7 +10,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Google+Sans:ital,opsz,wght@0,17..18,400..700;1,17..18,400..700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <form action="/server">
+    <form >
     <div id="mainbox">
         <h3>Signup Form</h3><br>
         <div class="option-login">
@@ -18,12 +18,14 @@
             <a id="signup-btn" href="signup.html">Signup</a><br>
         </div>
 
-        <input type="email" placeholder="Email Address" class="input-area" id="signup-email" ><br>
-        <input type="password" placeholder="Password" class="input-area" id="Password" ><br>
-        <input type="password" placeholder="Confirm password" class="input-area" id="Confirm-password" ><br>
+        <input type="email" placeholder="Email Address" class="input-area" id="signup-email" required ><br>
+        <input type="password" placeholder="Password" class="input-area" id="Password" required><br>
+        <input type="password" placeholder="Confirm password" class="input-area" id="Confirm-password" required><br>
 
         <button type="submit" id="submit-btn">Signup</button>
     </div>
     </form>
+
+    <script src="signup.js"></script>
 </body>
 </html>
