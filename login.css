@@ -1,0 +1,78 @@
+
+body{
+    height:100vh;
+    margin:0;
+    background:antiquewhite
+}
+.login-form{
+    border : 2px solid black;
+    display:flex;
+    flex-direction: column;
+     justify-content: flex-start;
+    background-color: rgb(255, 255, 255);
+    align-items: center;
+    margin: 100px auto;
+    height: 450px;
+    width: 400px;
+    border-radius: 15px;
+    padding: 20px;
+}
+h1{
+    text-align: center;
+    font-size: 2em;
+    font-family: "Google Sans" ;
+}
+input{
+   height: 50px;
+   width: 400px;
+    font-size: 1.2em;
+    border-radius: 15px;
+    padding-left : 15px; 
+    margin : 5px 0px;
+    box-shadow: 1px 1px 1px rgb(202, 200, 200);
+}
+.email{
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+.first{
+    flex-direction: row;
+    display: flex;
+}
+.signin{
+    width: 200px;
+    height: 55px;
+    color: white;
+    cursor: pointer;
+    border-radius: 15px;
+    font-size: 25px;
+    color: black;
+    font-family: "Google Sans" ;
+    
+}
+.login{
+    width: 200px;
+    height: 55px;
+    background: linear-gradient(90deg, rgba(2, 0, 36, 1) 0%, rgba(9, 9, 121, 1) 60%, rgba(39, 118, 245, 1) 100%);
+    cursor: pointer;
+    border-radius: 15px;
+    font-size: 25px;
+    color: white;
+    font-family: "Google Sans" ;
+   
+}
+.first{
+    border-radius: 15px;
+    align-items: center;
+}
+.submit{
+    background: linear-gradient(90deg, rgba(2, 0, 36, 1) 0%, rgba(9, 9, 121, 1) 60%, rgba(39, 118, 245, 1) 100%);
+    width: 400px;
+    height: 55px;
+    border-radius: 15px;
+    cursor: pointer;
+    font-size: 25px;
+    color: white;
+    font-family: "Google Sans" ;
+    margin-top: 20px;
+}
