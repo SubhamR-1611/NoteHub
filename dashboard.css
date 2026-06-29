@@ -148,11 +148,41 @@
         transform: translateY(-5px);
     }
 
-    .note-card h3{
-        margin-bottom: 15px;
-        color: #333;
-        word-wrap: break-word;
-    }
+.note-card h3{
+    margin-bottom:15px;
+    color:#333;
+    word-wrap:break-word;
+}
+
+/* Editable title */
+
+.title-input{
+
+    width:100%;
+    font-size:22px;
+    font-weight:bold;
+
+    border:none;
+    outline:none;
+
+    background:transparent;
+
+    margin-bottom:15px;
+    color:#333;
+
+}
+
+.title-input[readonly]{
+
+    cursor:default;
+
+}
+
+body.dark .title-input{
+
+    color:white;
+
+}
 
     .note-card button{
         margin-top: 20px;
@@ -206,9 +236,11 @@
         margin-top: 15px;
     }
 
-    .save-btn{
-        background: #28a745 !important;
-    }
+.save-btn{
+
+    background:#1d7df7 !important;
+
+}
 
     .star-btn{
         background: gold !important;
@@ -218,6 +250,10 @@
     .delete-btn{
         background: red !important;
     }
+    .share-btn{
+    background:#17a2b8 !important;
+    color:white;
+}
 
     /* ==========================
     EXPAND CARD
@@ -344,3 +380,74 @@
             gap: 18px;
         }
     }
+/* ==========================
+   DARK MODE BUTTON
+========================== */
+
+.theme-btn{
+    width:50px;
+    height:50px;
+    border:none;
+    border-radius:50%;
+    cursor:pointer;
+    font-size:22px;
+    background:#f2f2f2;
+    transition:.3s;
+}
+
+.theme-btn:hover{
+    transform:scale(1.08);
+}
+
+/* ==========================
+   DARK MODE
+========================== */
+
+body.dark{
+    background:#1d1f27;
+}
+
+body.dark .navbar{
+    background:#2b2f3a;
+}
+
+body.dark .note-card{
+    background:#343946;
+    color:white;
+}
+
+body.dark .note-card h3{
+    color:white;
+}
+
+body.dark textarea{
+    background:#2b2f3a;
+    color:white;
+    border:1px solid #555;
+}
+
+body.dark textarea::placeholder{
+    color:#bbb;
+}
+
+body.dark #searchInput{
+    background:#343946;
+    color:white;
+}
+
+body.dark #searchInput::placeholder{
+    color:#bbb;
+}
+
+body.dark .nav-left button{
+    color:white;
+}
+
+body.dark .logout-btn{
+    color:#ff6b6b;
+}
+
+body.dark .theme-btn{
+    background:#444;
+    color:white;
+}

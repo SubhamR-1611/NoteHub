@@ -5,6 +5,7 @@ const allBtn = document.querySelector(".nav-left button:first-child");
 const importantBtn = document.querySelector(".nav-left button:last-child");
 const searchInput = document.getElementById("searchInput");
 const currentUser = localStorage.getItem("loggedInUser");
+const themeBtn = document.getElementById("themeBtn");
 
 // If no user is logged in, go back to login page
 if (!currentUser) {
@@ -111,10 +112,16 @@ filteredNotes = filteredNotes.filter(note =>
         notesContainer.innerHTML += `
             <div class="note-card" onclick="expandCard(this)">
 
-                <h3>${note.title}</h3>
+                <input
+                    class="title-input"
+                    value="${note.title}"
+                    readonly
+                    onclick="event.stopPropagation()"
+                >
 
                 <textarea
                     placeholder="DESCRIPTION"
+                    readonly
                     onclick="event.stopPropagation()"
                 >${note.description}</textarea>
 
@@ -122,9 +129,10 @@ filteredNotes = filteredNotes.filter(note =>
 
                     <button
                         class="save-btn"
-                        onclick="saveNote(event, ${originalIndex})"
+                        onclick="toggleEdit(event, ${originalIndex})"
+                        data-mode="view"
                     >
-                        ✓
+                        ✏️ Edit
                     </button>
 
                     <button
@@ -132,6 +140,13 @@ filteredNotes = filteredNotes.filter(note =>
                         onclick="toggleImportant(event, ${originalIndex})"
                     >
                         ${note.important ? "⭐" : "☆"}
+                    </button>
+
+                    <button
+                        class="share-btn"
+                        onclick="shareNote(event, ${originalIndex})"
+                    >
+                        📤
                     </button>
 
                     <button
@@ -165,22 +180,51 @@ function expandCard(card) {
    SAVE NOTE
 ========================== */
 
-function saveNote(event, index) {
+function toggleEdit(event,index){
 
     event.stopPropagation();
 
-    const textarea =
-        event.target
-            .closest(".note-card")
-            .querySelector("textarea");
+    const card = event.target.closest(".note-card");
 
-    notes[index].description = textarea.value;
+    const title = card.querySelector(".title-input");
+
+    const textarea = card.querySelector("textarea");
+
+    const btn = event.target;
+
+    if(btn.dataset.mode==="view"){
+
+        title.removeAttribute("readonly");
+
+        textarea.removeAttribute("readonly");
+
+        title.focus();
+
+        btn.dataset.mode="edit";
+
+        btn.innerHTML="💾 Save";
+
+        return;
+
+    }
+
+    notes[index].title=title.value;
+
+    notes[index].description=textarea.value;
 
     saveData();
 
-    alert("Note Saved Successfully!");
-}
+    title.setAttribute("readonly",true);
 
+    textarea.setAttribute("readonly",true);
+
+    btn.dataset.mode="view";
+
+    btn.innerHTML="✏️ Edit";
+
+    displayNotes();
+
+}
 /* ==========================
    IMPORTANT
 ========================== */
@@ -194,6 +238,7 @@ function toggleImportant(event, index) {
     saveData();
     displayNotes();
 }
+
 
 /* ==========================
    DELETE
@@ -216,6 +261,36 @@ function deleteNote(event, index) {
 }
 
 /* ==========================
+   SHARE NOTE
+========================== */
+
+function shareNote(event, index) {
+
+    event.stopPropagation();
+
+    const note = notes[index];
+
+    const shareText = `📝 ${note.title}\n\n${note.description}`;
+
+    if (navigator.share) {
+
+        navigator.share({
+            title: note.title,
+            text: shareText
+        });
+
+    } else {
+
+        navigator.clipboard.writeText(shareText).then(() => {
+            alert("Note copied to clipboard!");
+        }).catch(() => {
+            alert("Could not share or copy the note.");
+        });
+
+    }
+}
+
+/* ==========================
    LOCAL STORAGE
 ========================== */
 
@@ -227,6 +302,36 @@ function saveData() {
     );
 
 }
+/* ==========================
+   DARK MODE
+========================== */
+
+if(localStorage.getItem("theme") === "dark"){
+
+    document.body.classList.add("dark");
+    themeBtn.textContent = "☀️";
+
+}
+
+themeBtn.addEventListener("click",()=>{
+
+    document.body.classList.toggle("dark");
+
+    if(document.body.classList.contains("dark")){
+
+        localStorage.setItem("theme","dark");
+        themeBtn.textContent="☀️";
+
+    }
+
+    else{
+
+        localStorage.setItem("theme","light");
+        themeBtn.textContent="🌙";
+
+    }
+
+});
 /* ==========================
    LOGOUT
 ========================== */
