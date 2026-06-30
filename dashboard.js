@@ -34,7 +34,8 @@ addBtn.addEventListener("click", () => {
         notes.push({
             title: title,
             description: "",
-            important: false
+            important: false,
+            color:"transparent"
         });
         
 
@@ -110,7 +111,7 @@ filteredNotes = filteredNotes.filter(note =>
         const originalIndex = notes.indexOf(note);
 
         notesContainer.innerHTML += `
-            <div class="note-card" onclick="expandCard(this)">
+            <div class="note-card" style="border-top:8px solid ${note.color}" onclick="expandCard(this)">
 
                 <input
                     class="title-input"
@@ -139,22 +140,47 @@ filteredNotes = filteredNotes.filter(note =>
                         class="star-btn"
                         onclick="toggleImportant(event, ${originalIndex})"
                     >
-                        ${note.important ? "⭐" : "☆"}
+                        ${note.important ? "⭐" : "✰"}
                     </button>
 
                     <button
                         class="share-btn"
                         onclick="shareNote(event, ${originalIndex})"
                     >
-                        📤
+                        <span class="material-symbols-outlined">
+                            share
+                        </span>
                     </button>
 
                     <button
                         class="delete-btn"
                         onclick="deleteNote(event, ${originalIndex})"
                     >
-                        Delete
+                        <span class="material-symbols-outlined">delete</span>
                     </button>
+
+                    <div class="color-box">
+                        <button class="color-btn" onclick="toggleColorMenu(event)">
+                            🎨 
+                        </button>
+                        <div class="colors" onclick="setColor(event,${originalIndex})">
+
+                            <button data-color="red"></button>
+
+                            <button data-color="blue"></button>
+
+                            <button data-color="green"></button>
+
+                            <button data-color="yellow"></button>
+
+                            <button data-color="orange"></button>
+
+                            <button data-color="none" style="font-size:1.2em ; background-color : white ; color : black ; text-align : center" ;top : 10px>X</button>
+
+                        </div>
+                    </div>
+
+                    
 
                 </div>
 
@@ -332,6 +358,47 @@ themeBtn.addEventListener("click",()=>{
     }
 
 });
+
+/* ==========================
+  COLOR CODE
+========================== */
+
+
+function toggleColorMenu(event){
+
+    
+    event.stopPropagation();
+    
+
+    const menu = event.target.nextElementSibling;
+    menu.classList.toggle("show");
+}
+
+
+function setColor(event,index){
+
+    event.stopPropagation();
+
+    const color = event.target.dataset.color;
+    if(!color) return;
+    notes[index].color = color;
+
+    saveData();
+    displayNotes();
+
+}
+
+document.addEventListener('click',function(e){
+    
+
+    document.querySelectorAll('.colors').forEach(menu => {
+        menu.classList.remove('show');
+    })
+    
+
+})
+
+
 /* ==========================
    LOGOUT
 ========================== */

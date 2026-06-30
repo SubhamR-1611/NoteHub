@@ -253,7 +253,83 @@ body.dark .title-input{
     .share-btn{
     background:#17a2b8 !important;
     color:white;
+    }
+
+/* ==========================
+   COLOR CODE
+========================== */
+
+    .color-box{
+        position : relative;
+        display : inline-block;
+        
+       
+    }
+
+    .color-box .color-btn{
+        font-size : 1.2em;
+        background-color: rgb(98, 92, 107) !important;
+    }
+
+    .colors{
+        display : none;
+    }
+
+    .colors.show{
+
+    position: absolute;
+
+    bottom: 100%;     
+    right: 0;
+
+    display: grid;
+    grid-template-columns: repeat(3,30px);
+    gap:1px;
+
+    background:white;
+
+    padding:5px;
+
+    border-radius:10px;
+
+    box-shadow:0 5px 15px rgba(0,0,0,.2);
+
+    z-index:1000;
 }
+
+    
+
+    .colors button{
+    width:25px;
+    height:25px;
+    border-radius:8px;
+    border:none;
+    cursor:pointer;
+    
+}
+
+    button[data-color="red"]{
+        background:red !important;
+    }
+
+    button[data-color="blue"]{
+        background:blue !important;
+    }
+
+    button[data-color="green"]{
+        background:green !important;
+    }
+
+    button[data-color="yellow"]{
+        background:yellow !important;
+    }
+
+    button[data-color="orange"]{
+        background:orange !important;
+    }
+
+    
+
 
     /* ==========================
     EXPAND CARD
