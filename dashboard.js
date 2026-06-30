@@ -160,6 +160,13 @@ filteredNotes = filteredNotes.filter(note =>
                     </button>
 
                     <button
+                        class="pdf-btn"
+                        onclick="saveAsPDF(event, ${originalIndex})"
+                    >
+                        📄 PDF
+                    </button>
+
+                    <button
                         class="delete-btn"
                         onclick="deleteNote(event, ${originalIndex})"
                     >
