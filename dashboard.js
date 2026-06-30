@@ -150,6 +150,13 @@ filteredNotes = filteredNotes.filter(note =>
                     </button>
 
                     <button
+                        class="pdf-btn"
+                        onclick="saveAsPDF(event, ${originalIndex})"
+                    >
+                        📄 PDF
+                    </button>
+
+                    <button
                         class="delete-btn"
                         onclick="deleteNote(event, ${originalIndex})"
                     >
@@ -288,6 +295,65 @@ function shareNote(event, index) {
         });
 
     }
+}
+
+/* ==========================
+   SAVE AS PDF
+========================== */
+
+function saveAsPDF(event, index) {
+
+    event.stopPropagation();
+
+    const note = notes[index];
+
+    const printWindow = window.open("", "_blank");
+
+    printWindow.document.write(`
+        <!DOCTYPE html>
+        <html>
+        <head>
+            <meta charset="UTF-8">
+            <title>${escapeHTML(note.title)}</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    padding: 40px;
+                    color: #222;
+                }
+                h1 {
+                    border-bottom: 2px solid #1d7df7;
+                    padding-bottom: 10px;
+                    margin-bottom: 20px;
+                }
+                p {
+                    font-size: 16px;
+                    line-height: 1.6;
+                    white-space: pre-wrap;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>${escapeHTML(note.title)}</h1>
+            <p>${escapeHTML(note.description)}</p>
+        </body>
+        </html>
+    `);
+
+    printWindow.document.close();
+
+    printWindow.onload = () => {
+        printWindow.focus();
+        printWindow.print();
+    };
+}
+
+function escapeHTML(str) {
+
+    const div = document.createElement("div");
+    div.textContent = str;
+    return div.innerHTML;
+
 }
 
 /* ==========================
