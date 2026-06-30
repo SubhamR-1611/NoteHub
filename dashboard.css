@@ -272,7 +272,9 @@ body.dark .title-input{
     }
 
     .color-box .color-btn{
-        font-size : 1.2em;
+        width : 44px;
+        height : 53px;
+        font-size: 1.4em;
         background-color: rgb(98, 92, 107) !important;
     }
 
@@ -333,13 +335,16 @@ body.dark .title-input{
         background:orange !important;
     }
 
-    
+
+     /* ==========================
+    PDF BUTTON
+    ========================== */
 
 
-.pdf-btn{
-    background:#6c4fd6 !important;
-    color:white;
-}
+    .pdf-btn{
+        background:#6c4fd6 !important;
+        color:white;
+    }
 
     /* ==========================
     EXPAND CARD
