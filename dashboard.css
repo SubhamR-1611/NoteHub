@@ -158,7 +158,7 @@
 
 .title-input{
 
-    width:100%;
+    width:80%;
     font-size:22px;
     font-weight:bold;
 
@@ -272,10 +272,9 @@ body.dark .title-input{
     }
 
     .color-box .color-btn{
-        width : 44px;
-        height : 53px;
+        
         font-size: 1.4em;
-        background-color: rgb(98, 92, 107) !important;
+        background-color: rgb(211, 41, 197) !important;
     }
 
     .colors{
@@ -541,4 +540,79 @@ body.dark .logout-btn{
 body.dark .theme-btn{
     background:#444;
     color:white;
+}
+
+/* ==========================
+   DROP-DOWN
+========================== */
+
+.menu-box{
+    position:relative;
+}
+
+.menu-btn{
+
+    width:44px;
+    height:50.67px;
+
+    border:none;
+    border-radius:10px;
+
+    cursor:pointer;
+
+    background:#6d677d !important;
+    color:white;
+
+    font-size:20px;
+}
+
+.dropdown-menu{
+
+    position:absolute;
+
+    left:-50px;
+    bottom:95%;
+    width:170px;
+
+    background:#3b3f4e;
+    border-radius:12px;
+    
+    
+    box-shadow:0 10px 25px rgba(0,0,0,.35);
+    padding:8px;
+    display:none;
+    flex-direction:column;
+    gap:5px;
+    z-index:999;
+}
+
+.dropdown-menu.show{
+
+    display:flex;
+
+}
+
+.dropdown-menu button{
+
+    background:none;
+
+    border:none;
+
+    color:white;
+
+    text-align:left;
+
+    padding:10px 12px;
+
+    border-radius:8px;
+
+    cursor:pointer;
+
+    transition:.2s;
+}
+
+.dropdown-menu button:hover{
+
+    background:#4b5165;
+
 }

@@ -132,42 +132,17 @@ filteredNotes = filteredNotes.filter(note =>
                         class="save-btn"
                         onclick="toggleEdit(event, ${originalIndex})"
                         data-mode="view"
+                        style="font-size : 1em"
                     >
                         ✏️ Edit
+
                     </button>
 
-                    <button
-                        class="star-btn"
-                        onclick="toggleImportant(event, ${originalIndex})"
-                    >
-                        ${note.important ? "⭐" : "✰"}
-                    </button>
+                  
 
-                    <button
-                        class="share-btn"
-                        onclick="shareNote(event, ${originalIndex})"
-                    >
-                        <span class="material-symbols-outlined">
-                            share
-                        </span>
-                    </button>
-
-                    <button
-                        class="pdf-btn"
-                        onclick="saveAsPDF(event, ${originalIndex})"
-                    >
-                        📄 PDF
-                    </button>
-
-                    <button
-                        class="delete-btn"
-                        onclick="deleteNote(event, ${originalIndex})"
-                    >
-                        <span class="material-symbols-outlined">delete</span>
-                    </button>
 
                     <div class="color-box">
-                        <button class="color-btn" onclick="toggleColorMenu(event)">🎨</button>
+                        <button class="color-btn" onclick="toggleColorMenu(event)"><span class="material-symbols-outlined">palette</span></button>
                         <div class="colors" onclick="setColor(event,${originalIndex})">
 
                             <button data-color="red"></button>
@@ -185,7 +160,44 @@ filteredNotes = filteredNotes.filter(note =>
                         </div>
                     </div>
 
+                    <button
+                            onclick="deleteNote(event, ${originalIndex})"
+                        >
+                            <span class="material-symbols-outlined">delete</span>  
+                    </button>
                     
+                    <div class="menu-box">
+
+                        <button
+                            class="menu-btn"
+                            onclick="toggleMenu(event)"
+                        >
+                            ⋮
+                        </button>
+
+                        <div class="dropdown-menu">
+
+                            <button
+                                onclick="toggleImportant(event, ${originalIndex})"
+                            >
+                                ${note.important ? "⭐ Remove Star" : "☆ Mark Important"}
+                            </button>
+
+                            <button
+                                onclick="shareNote(event, ${originalIndex})"
+                            >
+                                📤 Share
+                            </button>
+
+                            <button class="more-item pdf-item" onclick="saveAsPDF(event, ${originalIndex})">
+                                    📄 Save as PDF
+                            </button>
+
+                            
+
+                        </div>
+
+                    </div>
 
                 </div>
 
@@ -433,8 +445,9 @@ function toggleColorMenu(event){
     
     event.stopPropagation();
     
+    console.log(event.target.parentElement);
 
-    const menu = event.target.nextElementSibling;
+    const menu = event.target.parentElement.nextElementSibling;
     menu.classList.toggle("show");
 }
 
@@ -442,6 +455,8 @@ function toggleColorMenu(event){
 function setColor(event,index){
 
     event.stopPropagation();
+
+    
 
     const color = event.target.dataset.color;
     if(!color) return;
@@ -478,5 +493,43 @@ logoutBtn.addEventListener("click", () => {
     localStorage.removeItem("loggedInUser");
 
     window.location.href = "login.html";
+
+});
+
+/* ==========================
+   DROPDOWN-MORE
+========================== */
+
+function toggleMenu(event){
+
+    event.stopPropagation();
+
+    const menu =
+        event.target
+             .closest(".menu-box")
+             .querySelector(".dropdown-menu");
+
+    document
+        .querySelectorAll(".dropdown-menu")
+        .forEach(m=>{
+
+            if(m!==menu)
+                m.classList.remove("show");
+
+        });
+
+    menu.classList.toggle("show");
+
+}
+
+document.addEventListener("click",()=>{
+
+    document
+        .querySelectorAll(".dropdown-menu")
+        .forEach(menu=>{
+
+            menu.classList.remove("show");
+
+        });
 
 });
