@@ -128,76 +128,47 @@ filteredNotes = filteredNotes.filter(note =>
 
                 <div class="card-buttons">
 
-                    <button
-                        class="save-btn"
-                        onclick="toggleEdit(event, ${originalIndex})"
-                        data-mode="view"
-                        style="font-size : 1em"
-                    >
+                    <button class="save-btn" onclick="toggleEdit(event, ${originalIndex})" data-mode="view">
                         ✏️ Edit
 
+                    <button class="star-btn" onclick="toggleImportant(event, ${originalIndex})">
+                        ${note.important ? "⭐" : "✰"}
                     </button>
 
-                  
-
-
-                    <div class="color-box">
-                        <button class="color-btn" onclick="toggleColorMenu(event)"><span class="material-symbols-outlined">palette</span></button>
-                        <div class="colors" onclick="setColor(event,${originalIndex})">
-
-                            <button data-color="red"></button>
-
-                            <button data-color="blue"></button>
-
-                            <button data-color="green"></button>
-
-                            <button data-color="yellow"></button>
-
-                            <button data-color="orange"></button>
-
-                            <button data-color="none" style="font-size:1.2em ; background-color : white ; color : black ; text-align : center" ;top : 10px>X</button>
-
-                        </div>
-                    </div>
-
-                    <button
-                            onclick="deleteNote(event, ${originalIndex})"
-                        >
-                            <span class="material-symbols-outlined">delete</span>  
+                    <button class="delete-btn" onclick="deleteNote(event, ${originalIndex})">
+                        🗑️
                     </button>
-                    
-                    <div class="menu-box">
 
-                        <button
-                            class="menu-btn"
-                            onclick="toggleMenu(event)"
-                        >
-                            ⋮
-                        </button>
+                    <div class="more-box">
+                        <button class="more-btn" onclick="toggleMoreMenu(event)">⋯ More</button>
+                        <div class="more-menu">
 
-                        <div class="dropdown-menu">
-
-                            <button
-                                onclick="toggleImportant(event, ${originalIndex})"
-                            >
-                                ${note.important ? "⭐ Remove Star" : "☆ Mark Important"}
-                            </button>
-
-                            <button
-                                onclick="shareNote(event, ${originalIndex})"
-                            >
+                            <button class="more-item share-item" onclick="shareNote(event, ${originalIndex})">
                                 📤 Share
                             </button>
 
                             <button class="more-item pdf-item" onclick="saveAsPDF(event, ${originalIndex})">
-                                    📄 Save as PDF
+                                📄 Save as PDF
                             </button>
 
-                            
+                            <div class="more-item color-item">
+                                <span>🎨 Color</span>
+                                <div class="color-swatches" onclick="setColor(event, ${originalIndex})">
+                                    <button data-color="red"></button>
+                                    <button data-color="blue"></button>
+                                    <button data-color="green"></button>
+                                    <button data-color="yellow"></button>
+                                    <button data-color="orange"></button>
+                                    <button data-color="none" class="clear-color">✕</button>
+                                </div>
+                            </div>
 
                         </div>
-
                     </div>
+
+                    
+                    
+                    
 
                 </div>
 
@@ -436,46 +407,43 @@ themeBtn.addEventListener("click",()=>{
 });
 
 /* ==========================
-  COLOR CODE
+   MORE MENU
 ========================== */
 
+function toggleMoreMenu(event) {
 
-function toggleColorMenu(event){
-
-    
     event.stopPropagation();
-    
-    console.log(event.target.parentElement);
 
-    const menu = event.target.parentElement.nextElementSibling;
+    const box = event.target.closest(".more-box");
+    const menu = box.querySelector(".more-menu");
+
+    document.querySelectorAll(".more-menu.show").forEach(m => {
+        if (m !== menu) m.classList.remove("show");
+    });
+
     menu.classList.toggle("show");
 }
 
-
-function setColor(event,index){
+function setColor(event, index) {
 
     event.stopPropagation();
 
     
 
     const color = event.target.dataset.color;
-    if(!color) return;
-    notes[index].color = color;
+    if (!color) return;
+
+    notes[index].color = color === "none" ? "transparent" : color;
 
     saveData();
     displayNotes();
-
 }
 
-document.addEventListener('click',function(e){
-    
-
-    document.querySelectorAll('.colors').forEach(menu => {
-        menu.classList.remove('show');
-    })
-    
-
-})
+document.addEventListener("click", function () {
+    document.querySelectorAll(".more-menu").forEach(menu => {
+        menu.classList.remove("show");
+    });
+});
 
 
 /* ==========================
